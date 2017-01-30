@@ -1,0 +1,48 @@
+{% block navbar %}
+
+     <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+				
+                <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="#">Blog Categories
+				<span class="caret"></span></a>
+
+				<ul class="dropdown-menu" style="margin-left: 20px; background-color: lavender;">
+					{% for item in categories %}
+                    <li><a href="{% url 'category' item.forurl %} ">{{ item.name }}</a></li>
+                    {% endfor %}
+				</ul>
+			</div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {% url 'home' as home %}
+                    {% url 'about' as about %}
+                    <li {% if request.path == home %} class="active" {% endif %}>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li {% if request.path == about %} class="active" {% endif %}>
+                    
+                        <a href="{% url 'about' %}">About Me</a>
+                    </li>
+                    <li>
+                        <a href="#">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Navigation end -->
+{% endblock %}
