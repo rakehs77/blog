@@ -26,17 +26,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8" id="home_body">
-                {% for item in post %}
+                {% for item in posts %}
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="{% url 'post' item.id %}">
                         <h2 class="post-title">
-                            {{item.name}}
+                            {{item.title}}
                         </h2>
                     </a>
                     <p class="post-meta"><span class="glyphicon glyphicon-time"></span> on {{item.created_on}}</p>
                     <center><img class="img-responsive" src="../static/img/pink_cake.jpg" alt=""></center>
-                    <p>{{item.description|truncatewords:"30"}} </p>
-                    <a href="post.html" type="button" class="btn btn-primary read_more">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <p>{{item.tagline|truncatewords:"30"}} </p>
+                    <a href="{% url 'post' item.id %}" type="button" class="btn btn-primary read_more">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
                 <hr>
                 {% endfor %}

@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from .models import Post
+from categories.views import categories, getcategories
 
 # Create your views here.
-def post():
-    post = Post.objects.all().order_by('-created_on')
-    return post
+def posts():
+    posts = Post.objects.all().order_by('-created_on')
+    return posts
 
-def getpost():
-    getpost = Post.objects.get(category='category_name')
-    return getpost
-
-def posts(request):
-    
-    return (request, 'post.html', {'post': post})
+def getpost(request, post_id):
+    post = Post.objects.get(pk=post_id)
+    context = {'categories': categories, 'post': post}
+    return render(request, 'post.html', context)

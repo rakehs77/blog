@@ -2,11 +2,11 @@ from django.shortcuts import render
 from categories.views import categories
 from .models import About
 from .models import Heading
-from blogposts.views import post
+from blogposts.views import posts
 
 # Create your views here.
 def home(request): 
-    context = {'heading': heading, 'categories': categories, 'post': post}
+    context = {'heading': heading, 'categories': categories, 'posts': posts}
     return render(request, 'home.html', context)
 
 def about(request):

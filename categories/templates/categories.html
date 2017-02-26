@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{getcategories.name}}{% endblock%}
+{% block title %}{{category.name}}{% endblock%}
 
 {% block content %}
     <!-- Page Header -->
@@ -11,9 +11,9 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
                         
-                        <h1>{{getcategories.name}}</h1>
+                        <h1 style="font-size: 77px">{{category.name}}</h1>
                         <hr class="small">                    
-                        <span class="subheading">{{getcategories.description}}</span>
+                        <span class="subheading">{{category.description}}</span>
                         
                     </div>
                 </div>
@@ -25,17 +25,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8" id="home_body">
-                {% for item in post %}
+                {% for cat in category.post_set.all %}
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a href="{% url 'post' cat.id %}" >
                         <h2 class="post-title">
-                            {{item.name}}
+                            {{cat.title}}
                         </h2>
                     </a>
-                    <p class="post-meta"><span class="glyphicon glyphicon-time"></span> on {{item.created_on}}</p>
+                    <p class="post-meta"><span class="glyphicon glyphicon-time"></span> on {{cat.created_on}}</p>
                     <center><img class="img-responsive" src="../static/img/pink_cake.jpg" alt=""></center>
-                    <p>{{item.highlight}} </p>
-                    <a href="post.html" type="button" class="btn btn-primary read_more">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <p>{{cat.tagline|truncatewords:"30"}} </p>
+                    <a href="{% url 'post' cat.id %}" type="button" class="btn btn-primary read_more">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
                 <hr>
                 {% endfor %}

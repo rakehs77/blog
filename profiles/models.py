@@ -4,7 +4,7 @@ from categories.models import Category
 # Create your models here.
 class About(models.Model):
     name = models.CharField(max_length=32)
-    description = models.TextField(default="Write something about website.")
+    description = models.TextField(default="Write something about yourself. HTML allowed")
 
 class Heading(models.Model):
     pagename = models.CharField(max_length=32, editable=False)
