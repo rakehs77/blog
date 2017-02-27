@@ -19,11 +19,13 @@ from django.contrib import admin
 from profiles import views as pviews
 from categories import views as cviews
 from blogposts import views as bpviews
+from contact import views as cnviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', pviews.home, name='home'),
     url(r'^about$', pviews.about, name='about'),
+    url(r'^contact$', cnviews.contact, name='contact'),
     url(r'^category/(?P<category_slug>[a-zA-Z\-]+)/$', cviews.getcategories, name='category'),
     url(r'^posts/(?P<post_id>[0-9]+)/$', bpviews.getpost, name='post'),
 ]

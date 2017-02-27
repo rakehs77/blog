@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'profiles',
     'categories',
     'blogposts',
+    'contact',
 ]
 
 MIDDLEWARE_CLASSES = [

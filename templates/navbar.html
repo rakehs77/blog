@@ -25,6 +25,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% url 'home' as home %}
                     {% url 'about' as about %}
+                    {% url 'contact' as contact %}
                     <li {% if request.path == home %} class="active" {% endif %}>
                         <a href="{% url 'home' %}">Home</a>
                     </li>
@@ -35,8 +36,8 @@
                     <li>
                         <a href="#">Gallery</a>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
+                    <li {% if request.path == contact %} class="active" {% endif %}>
+                        <a href="{% url 'contact' %}">Contact</a>
                     </li>
                 </ul>
             </div>
