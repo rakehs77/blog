@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment
 from categories.views import categories, getcategories
+from .forms import CommentForm
 
 # Create your views here.
 def posts():
@@ -9,5 +10,18 @@ def posts():
 
 def getpost(request, post_id):
     post = Post.objects.get(pk=post_id)
-    context = {'categories': categories, 'post': post}
+
+# Comment Form
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        comment = form.cleaned_data.get('comment')
+        cmmnt = Comment(
+            post=post,
+            name=name,
+            comment=comment
+            )
+        cmmnt.save()
+
+    context = {'categories': categories, 'form': form, 'post': post}
     return render(request, 'post.html', context)
