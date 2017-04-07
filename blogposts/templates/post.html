@@ -40,6 +40,7 @@
                 <!-- Comments Form -->
                 
                 <div class="well">
+                {% if request.user.is_authenticated %}
                     <h4>Leave a Comment:</h4>
                     <form name="commentForm" role="form" action="" method="post">
                         {% csrf_token %}
@@ -51,6 +52,9 @@
                         {% endfor %}
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                {% else %}
+                <p> Please <a href="{% url 'account_login' %}">login</a> to leave a comment.</p>
+                {% endif %}
                 </div>
 
                 <hr>
@@ -67,7 +71,7 @@
                     
                     <div class="media-body">
                         
-                        <h4 class="media-heading">{{com.name}}
+                        <h4 class="media-heading">{{com.user}}
                             <small>{{com.created_on}}</small>
                         </h4>
                         {{com.comment}}

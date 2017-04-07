@@ -41,6 +41,13 @@ INSTALLED_APPS = [
     'categories',
     'blogposts',
     'contact',
+    # user authentication
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -70,6 +77,14 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
@@ -140,4 +155,41 @@ EMAIL_HOST_PASSWORD = 'imp0ster'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
+SITE_ID = 1
 
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+
+
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL  = LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = None
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "My subject:"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+ACCOUNT_LOGOUT_ON_GET = False
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = False
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_SESSION_REMEMBER = None
+ACCOUNT_SIGNUP_FORM_CLASS = None
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+
+ACCOUNT_USERNAME_MIN_LENGTH = 5
+ACCOUNT_USERNAME_REQUIRED = True
+
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = ACCOUNT_EMAIL_VERIFICATION
+SOCIALACCOUNT_EMAIL_REQUIRED = ACCOUNT_EMAIL_REQUIRED

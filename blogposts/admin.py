@@ -13,8 +13,8 @@ admin.site.register(Post, PostAdmin)
 
 # comments
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'post', 'comment', 'created_on', 'updated_on',)
-    search_fields = ('name', 'post',)
+    list_display = ('user', 'post', 'comment', 'created_on', 'updated_on',)
+    search_fields = ('user', 'post',)
     list_filter = ( 'post', 'created_on')
 
 admin.site.register(Comment, CommentAdmin)
